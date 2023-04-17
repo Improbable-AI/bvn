@@ -68,12 +68,12 @@ class fullrank_two_stream_critic(nn.Module):
         self.f_fc1 = nn.Linear(env_params['obs'] + env_params['action'], 174)
         self.f_fc2 = nn.Linear(174, 174)
         self.f_fc3 = nn.Linear(174, 174)
-        self.f_out = nn.Linear(174, args.metric_embed_dim)
+        self.f_out = nn.Linear(174, metric_args.metric_embed_dim)
 
         self.phi_fc1 = nn.Linear(env_params['obs'] + env_params['goal'], 174)
         self.phi_fc2 = nn.Linear(174, 174)
         self.phi_fc3 = nn.Linear(174, 174)
-        self.phi_out = nn.Linear(174, args.metric_embed_dim)
+        self.phi_out = nn.Linear(174, metric_args.metric_embed_dim)
 
     def forward(self, x, actions):
         obs, goal = x[:, :self.env_params['obs']], x[:, self.env_params['obs']:]

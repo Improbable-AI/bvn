@@ -28,7 +28,6 @@ def get_env_params(env):
 
 
 def main(dep: Args = {}):
-    from ml_logger import logger, RUN
     
     os.environ['OMP_NUM_THREADS'] = '1'
     os.environ['MKL_NUM_THREADS'] = '1'
@@ -38,6 +37,8 @@ def main(dep: Args = {}):
     MetricArgs._update(dep)
 
     os.environ["ML_LOGGER_ROOT"] = f"{os.getcwd()}/results/{Args.agent_type}/{Args.critic_type}/{Args.env_name}/{Args.seed}"
+
+    from ml_logger import logger, RUN
     print("Dep", dep)
 
     if not RUN.resume:
